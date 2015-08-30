@@ -5,18 +5,25 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 GenRand	rand.go	/^func GenRand() uint64 {$/;"	d
-GetRandomName	randname.go	/^func GetRandomName(retry int) string {$/;"	d
+GetRandomName	randname.go	/^func GetRandomName(options ...func(*RandomName) error) string {$/;"	d
 InitSeed	rand.go	/^func InitSeed() uint64 {$/;"	d
+NewRandomName	randname.go	/^func NewRandomName() *RandomName {$/;"	d
 RandIntn	rand.go	/^func RandIntn(n int) int {$/;"	d
 RandUint64n	rand.go	/^func RandUint64n(n uint64) uint64 {$/;"	d
+RandomName	randname.go	/^type RandomName struct {$/;"	d
+RightName	randname.go	/^func RightName(name string) func(*RandomName) error {$/;"	d
 SeedRand	rand.go	/^func SeedRand(s uint64) uint64 {$/;"	d
 TestGenerateAwesomeNames	randname_test.go	/^func TestGenerateAwesomeNames(t *testing.T) {$/;"	d
 TestNameFormat	randname_test.go	/^func TestNameFormat(t *testing.T) {$/;"	d
 TestNameRetries	randname_test.go	/^func TestNameRetries(t *testing.T) {$/;"	d
 TimeSeed	rand.go	/^func TimeSeed() uint64 {$/;"	d
+init	cmd/randname/main.go	/^func init() {$/;"	d
 init	rand.go	/^func init() {$/;"	d
 init_seed	rand.go	/^var init_seed uint64$/;"	d
 isAwesome	randname_test.go	/^func isAwesome(name string) bool {$/;"	d
 main	cmd/randname/main.go	/^func main() {$/;"	d
+randLeftName	randname.go	/^func randLeftName() string {$/;"	d
+randRightName	randname.go	/^func randRightName() string {$/;"	d
 rand_name	README.md	/^# rand_name$/;"	h
+right_name	cmd/randname/main.go	/^var right_name string$/;"	d
 seed	rand.go	/^var seed uint64 = 1234$/;"	d

@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	MAX_UINT32 = ^uint32(0)
 	MAX_UINT64 = ^uint64(0)
 	MAX_INT64  = ^int64(0)
 )
@@ -27,7 +28,7 @@ func SeedRand(s uint64) uint64 {
 }
 
 func TimeSeed() uint64 {
-	return uint64((time.Now().UnixNano() % int64(MAX_INT64)))
+	return uint64((time.Now().UnixNano() % int64(MAX_UINT32)))
 }
 
 func GenRand() uint64 {

@@ -835,18 +835,41 @@ var (
 	}
 )
 
+type RandomName struct {
+	leftName  func() string
+	rightName func() string
+}
+
+func NewRandomName() *RandomName {
+	return &RandomName{leftName: randLeftName, rightName: randRightName}
+}
+
+func randLeftName() string {
+	return left[RandIntn(len(left))]
+}
+
+func randRightName() string {
+	return right[RandIntn(len(right))]
+}
+
+func RightName(name string) func(*RandomName) error {
+	return func(rn *RandomName) error {
+		rn.rightName = func() string { return name }
+		return nil
+	}
+	return nil
+}
+
 // GetRandomName generates a random name from the list of adjectives and surnames in this package
 // formatted as "adjective_surname". For example 'focused_turing'. If retry is non-zero, a random
 // integer between 0 and 10 will be added to the end of the name, e.g `focused_turing3`
-func GetRandomName(retry int) string {
-begin:
-	name := fmt.Sprintf("%s_%s", left[RandIntn(len(left))], right[RandIntn(len(right))])
-	if name == "boring_wozniak" /* Steve Wozniak is not boring */ {
-		goto begin
+func GetRandomName(options ...func(*RandomName) error) string {
+	rn := NewRandomName()
+
+	for _, option := range options {
+		option(rn)
 	}
 
-	if retry > 0 {
-		name = fmt.Sprintf("%s%d", name, RandIntn(10))
-	}
+	name := fmt.Sprintf("%s_%s", rn.leftName(), rn.rightName())
 	return name
 }
